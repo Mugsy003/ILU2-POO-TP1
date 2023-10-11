@@ -8,7 +8,8 @@ public class Village {
 	private Chef chef;
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
-	
+	private int nbMarche;
+	private Marche marche;
 	private static class Marche {
 		private Etal[] etals;
 		
@@ -79,9 +80,11 @@ public class Village {
 
 	}
 
-	public Village(String nom, int nbVillageoisMaximum) {
+	public Village(String nom, int nbVillageoisMaximum, int nbMarche) {
 		this.nom = nom;
+		this.nbMarche = nbMarche;
 		villageois = new Gaulois[nbVillageoisMaximum];
+		
 	}
 
 	public String getNom() {
@@ -126,6 +129,12 @@ public class Village {
 
 	}
 	
-
+	public String installerVendeur(Gaulois vendeur, String produit,int nbProduit) {
+		int x = marche.trouverEtalLibre();
+		System.out.println(vendeur.getNom()+"cherche un endroit pour vendre"+ nbProduit+ produit);
+		marche.utiliserEtal(x, vendeur, produit, nbProduit);
+		return "Le vendeur"+vendeur.getNom()+"vend des"+produit+"à  l'étal num"+x;
+	}
+	
 
 }
